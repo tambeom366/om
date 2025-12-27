@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Online Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+}
+
+/* HEADER */
+header {
+    background: #2874f0;
+    color: white;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+header input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+/* PRODUCTS */
+.products {
+    width: 75%;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.product {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.product h3 {
+    font-size: 16px;
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+.product button {
+    background: #ff9f00;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* CART */
+.cart {
+    width: 25%;
+    background: white;
+    padding: 15px;
+    border-left: 1px solid #ddd;
+}
+
+.cart h2 {
+    margin-top: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.total {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.checkout {
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+footer {
+    background: #172337;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .products {
+        width: 100%;
+    }
+
+    .cart {
+        width: 100%;
+        position: sticky;
+        bottom: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MyStore</h1>
+    <input type="text" placeholder="Search products">
+</header>
+
+<div class="container">
+
+    <div class="products">
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Smartphone</h3>
+            <p class="price">₹15,000</p>
+            <button onclick="addToCart('Smartphone',15000)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Laptop</h3>
+            <p class="price">₹45,000</p>
+            <button onclick="addToCart('Laptop',45000)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Headphones</h3>
+            <p class="price">₹2,000</p>
+            <button onclick="addToCart('Headphones',2000)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Smart Watch</h3>
+            <p class="price">₹3,500</p>
+            <button onclick="addToCart('Smart Watch',3500)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Bluetooth Speaker</h3>
+            <p class="price">₹2,500</p>
+            <button onclick="addToCart('Speaker',2500)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/300">
+            <h3>Camera</h3>
+            <p class="price">₹30,000</p>
+            <button onclick="addToCart('Camera',30000)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <div class="cart">
+        <h2>Cart</h2>
+        <div id="cartItems"></div>
+        <div class="total">Total: ₹<span id="total">0</span></div>
+        <button class="checkout">Checkout</button>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 MyStore | Online Shopping Website
+</footer>
+
+<script>
+let total = 0;
+
+function addToCart(name, price) {
+    const cartItems = document.getElementById("cartItems");
+
+    const item = document.createElement("div");
+    item.className = "cart-item";
+    item.innerHTML = `<span>${name}</span><span>₹${price}</span>`;
+
+    cartItems.appendChild(item);
+
+    total += price;
+    document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>
+
