@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instagram Full Clone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{background:#fafafa;transition:0.3s}
+.dark{background:#121212;color:white}
+
+/* LOGIN */
+.login{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.login-box{
+    background:#fff;
+    padding:30px;
+    width:300px;
+    text-align:center;
+    border-radius:8px;
+}
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+.login-box button{
+    width:100%;
+    padding:10px;
+    background:#3897f0;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+/* HEADER */
+.header{
+    background:white;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    border-bottom:1px solid #ccc;
+}
+.dark .header{background:#1e1e1e}
+
+/* STORIES */
+.stories{
+    display:flex;
+    overflow-x:auto;
+    padding:10px;
+    background:white;
+}
+.story{text-align:center;margin-right:10px}
+.story img{
+    width:60px;height:60px;border-radius:50%;
+    border:2px solid red;
+}
+
+/* POST */
+.post{
+    background:white;
+    margin:10px;
+    border:1px solid #ccc;
+}
+.post-header{
+    display:flex;
+    align-items:center;
+    padding:10px;
+}
+.post-header img{
+    width:40px;height:40px;border-radius:50%;margin-right:10px;
+}
+.post img{width:100%}
+.icons{
+    padding:10px;font-size:22px;
+}
+.comment-box{
+    display:flex;
+    padding:10px;
+}
+.comment-box input{
+    flex:1;padding:5px;
+}
+.comment-box button{
+    padding:5px;
+}
+
+/* REELS */
+.reels{
+    display:none;
+    height:90vh;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+/* FOOTER */
+.footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:10px;
+    font-size:22px;
+}
+.dark .footer{background:#1e1e1e}
+
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="login" id="login">
+    <div class="login-box">
+        <h2>Instagram</h2>
+        <input placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="hidden">
+
+<!-- HEADER -->
+<div class="header">
+    <strong>Instagram</strong>
+    <button onclick="toggleDark()">🌙</button>
+</div>
+
+<!-- STORIES -->
+<div class="stories">
+    <div class="story"><img src="https://i.pravatar.cc/60?1"><p>You</p></div>
+    <div class="story"><img src="https://i.pravatar.cc/60?2"><p>Rahul</p></div>
+    <div class="story"><img src="https://i.pravatar.cc/60?3"><p>Anita</p></div>
+</div>
+
+<!-- POST -->
+<div class="post">
+    <div class="post-header">
+        <img src="https://i.pravatar.cc/40?5">
+        <b>john_doe</b>
+    </div>
+
+    <img src="https://picsum.photos/500/400">
+
+    <div class="icons">
+        <span onclick="like()">🤍</span>
+        <span>💬</span>
+        <span>📤</span>
+        <p><span id="likes">120</span> likes</p>
+    </div>
+
+    <div class="comment-box">
+        <input id="commentInput" placeholder="Add comment">
+        <button onclick="addComment()">Post</button>
+    </div>
+
+    <ul id="comments"></ul>
+</div>
+
+<!-- REELS -->
+<div class="reels" id="reels">
+    🎬 Reels UI
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <span onclick="showFeed()">🏠</span>
+    <span onclick="showReels()">🎬</span>
+    <span>➕</span>
+    <span>❤️</span>
+    <span>👤</span>
+</div>
+
+</div>
+
+<!-- JS -->
+<script>
+let liked=false;
+let count=120;
+
+function login(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("app").classList.remove("hidden");
+}
+
+function like(){
+    let l=document.getElementById("likes");
+    if(!liked){count++;liked=true;}
+    else{count--;liked=false;}
+    l.innerText=count;
+}
+
+function addComment(){
+    let text=document.getElementById("commentInput").value;
+    if(text==="")return;
+    let li=document.createElement("li");
+    li.innerText=text;
+    document.getElementById("comments").appendChild(li);
+    document.getElementById("commentInput").value="";
+}
+
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+function showReels(){
+    document.querySelector(".post").style.display="none";
+    document.getElementById("reels").style.display="flex";
+}
+
+function showFeed(){
+    document.querySelector(".post").style.display="block";
+    document.getElementById("reels").style.display="none";
+}
+</script>
+
+</body>
+</html>
