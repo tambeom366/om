@@ -1,12 +1,12 @@
+import React from "react";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+
 function App() {
   return (
-    <div style={{
-      fontFamily: "Arial",
-      textAlign: "center",
-      marginTop: "50px"
-    }}>
-      <h1>📸 Instagram Clone</h1>
-      <p>Welcome to my Instagram-like app</p>
+    <div>
+      <Navbar />
+      <Home />
     </div>
   );
 }
